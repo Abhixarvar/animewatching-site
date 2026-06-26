@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Anime | AnimePulse</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .watch-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .anime-poster {
+            flex-shrink: 0;
+            width: 300px;
+        }
+
+        .anime-poster img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .anime-details {
+            flex-grow: 1;
+        }
+
+        .anime-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .anime-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .anime-synopsis {
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        .watch-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: rgba(25, 25, 35, 0.6);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .watch-links h3 {
+            font-family: 'Outfit', sans-serif;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .watch-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #e50914, #b20710);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .watch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .watch-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .anime-poster {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .anime-title {
+                font-size: 2rem;
+                text-align: center;
+            }
+            
+            .anime-meta {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-glow bg-glow-pink"></div>
+    <div class="bg-glow bg-glow-purple"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo" id="nav-logo" style="text-decoration: none; color: inherit;">
+                <i class="fa-solid fa-bolt pulse-icon"></i>
+                <span>Anime<span class="highlight">Pulse</span></span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" style="text-decoration: none; color: inherit;"><i class="fa-solid fa-house"></i> Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div id="loading-spinner" class="spinner-container active">
+            <div class="spinner"></div>
+        </div>
+
+        <div class="watch-container" id="watch-container" style="display: none;">
+            <div class="anime-poster">
+                <img id="anime-image" src="" alt="Anime Poster">
+            </div>
+            
+            <div class="anime-details">
+                <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+                
+                <h1 class="anime-title" id="anime-title">Loading...</h1>
+                
+                <div class="anime-meta" id="anime-meta">
+                    <!-- Meta info injected here -->
+                </div>
+                
+                <div class="anime-synopsis" id="anime-synopsis">
+                    <!-- Synopsis injected here -->
+                </div>
+                
+                <div class="watch-links">
+                    <h3>Where to Watch</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 10px;">Find episodes and streams on external sites:</p>
+                    <a id="animedao-link" href="#" target="_blank" rel="noopener noreferrer" class="watch-btn">
+                        <i class="fa-solid fa-play"></i> Watch on AnimeDao
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="watch.js"></script>
+</body>
+</html>

@@ -12,18 +12,7 @@ const navLinks = document.querySelectorAll('.nav-links li');
 const searchInput = document.getElementById('search-input');
 const heroSection = document.getElementById('hero-section');
 
-// Modal Elements
-const playerModal = document.getElementById('player-modal');
-const closeModalBtn = document.getElementById('close-modal');
-const modalTitle = document.getElementById('modal-title');
-const modalMeta = document.getElementById('modal-meta');
-const modalSynopsis = document.getElementById('modal-synopsis');
-const modalBookmarkBtn = document.getElementById('modal-bookmark-btn');
-const episodesList = document.getElementById('episodes-list');
-const audioToggles = document.querySelectorAll('.toggle-btn');
-const mockVideo = document.getElementById('mock-video');
-const playerLoading = document.getElementById('player-loading');
-let currentModalAnime = null;
+// Removed Modal Elements
 
 // Initialization
 document.addEventListener('DOMContentLoaded', () => {
@@ -74,33 +63,12 @@ function setupEventListeners() {
         }
     });
 
-    // Modal Close
-    closeModalBtn.addEventListener('click', closeModal);
-    playerModal.addEventListener('click', (e) => {
-        if (e.target === playerModal) closeModal();
-    });
 
-    // Audio Toggles
-    audioToggles.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            audioToggles.forEach(b => b.classList.remove('active'));
-            e.currentTarget.classList.add('active');
-            simulateVideoLoad();
-        });
-    });
-
-    // Modal Bookmark Toggle
-    modalBookmarkBtn.addEventListener('click', () => {
-        if (currentModalAnime) {
-            toggleBookmark(currentModalAnime);
-            updateModalBookmarkState(currentModalAnime.mal_id);
-        }
-    });
 
     // Hero buttons
     document.getElementById('hero-watch-btn').addEventListener('click', () => {
         if(currentAnimeList.length > 0) {
-            openModal(currentAnimeList[0]); // First item in top list
+            window.location.href = `watch.html?id=${currentAnimeList[0].mal_id}`;
         }
     });
     
@@ -219,75 +187,14 @@ function renderAnimeGrid(animeArray) {
             </div>
         `;
 
-        card.addEventListener('click', () => openModal(anime));
+        card.addEventListener('click', () => {
+            window.location.href = `watch.html?id=${anime.mal_id}`;
+        });
         animeGrid.appendChild(card);
     });
 }
 
-// Modal & Player Logic
-function openModal(anime) {
-    currentModalAnime = anime;
-    const title = anime.title_english || anime.title;
-    
-    modalTitle.textContent = title;
-    modalSynopsis.textContent = anime.synopsis || "No synopsis available.";
-    
-    const episodes = anime.episodes || 12; // Fallback if unknown
-    const status = anime.status;
-    const score = anime.score || 'N/A';
-    
-    modalMeta.innerHTML = `
-        <span class="meta-badge"><i class="fa-solid fa-star" style="color: gold;"></i> ${score}</span>
-        <span class="meta-badge">${anime.type || 'TV'}</span>
-        <span class="meta-badge">${status}</span>
-        <span class="meta-badge">${episodes} EPS</span>
-    `;
-
-    updateModalBookmarkState(anime.mal_id);
-    renderEpisodes(episodes);
-    simulateVideoLoad();
-    
-    playerModal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
-}
-
-function closeModal() {
-    playerModal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-    mockVideo.pause();
-    currentModalAnime = null;
-}
-
-function renderEpisodes(total) {
-    episodesList.innerHTML = '';
-    // Display up to 24 episodes for UI purposes if unknown
-    const count = total ? Math.min(total, 100) : 12; 
-    
-    for (let i = 1; i <= count; i++) {
-        const btn = document.createElement('button');
-        btn.className = `ep-btn ${i === 1 ? 'playing' : ''}`;
-        btn.textContent = `EP ${i}`;
-        
-        btn.addEventListener('click', (e) => {
-            document.querySelectorAll('.ep-btn').forEach(b => b.classList.remove('playing'));
-            e.target.classList.add('playing');
-            simulateVideoLoad();
-        });
-        
-        episodesList.appendChild(btn);
-    }
-}
-
-function simulateVideoLoad() {
-    mockVideo.pause();
-    playerLoading.classList.add('active');
-    
-    // Simulate network delay for fetching stream
-    setTimeout(() => {
-        playerLoading.classList.remove('active');
-        // We just leave the mock video ready to play
-    }, 1500);
-}
+// Removed Modal Logic
 
 // Bookmarks Logic
 function isBookmarked(id) {
@@ -331,15 +238,7 @@ function toggleBookmark(anime) {
     }
 }
 
-function updateModalBookmarkState(id) {
-    if (isBookmarked(id)) {
-        modalBookmarkBtn.classList.add('bookmarked');
-        modalBookmarkBtn.innerHTML = '<i class="fa-solid fa-bookmark"></i>';
-    } else {
-        modalBookmarkBtn.classList.remove('bookmarked');
-        modalBookmarkBtn.innerHTML = '<i class="fa-regular fa-bookmark"></i>';
-    }
-}
+
 
 // Utilities
 function showLoading(show) {
