@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimePulse | Watch Free Anime</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-glow bg-glow-pink"></div>
+    <div class="bg-glow bg-glow-purple"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" id="nav-logo">
+                <i class="fa-solid fa-bolt pulse-icon"></i>
+                <span>Anime<span class="highlight">Pulse</span></span>
+            </div>
+            
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="search-input" placeholder="Search anime...">
+            </div>
+
+            <ul class="nav-links">
+                <li class="active" data-tab="home"><i class="fa-solid fa-house"></i> Home</li>
+                <li data-tab="bookmarks"><i class="fa-solid fa-bookmark"></i> Bookmarks</li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section (only on home) -->
+        <section class="hero" id="hero-section">
+            <div class="hero-content">
+                <span class="hero-badge">Trending Now</span>
+                <h1 id="hero-title">Loading...</h1>
+                <p id="hero-synopsis">Discovering the best anime for you.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" id="hero-watch-btn">
+                        <i class="fa-solid fa-play"></i> Watch Now
+                    </button>
+                    <button class="btn btn-secondary btn-icon" id="hero-bookmark-btn">
+                        <i class="fa-regular fa-bookmark"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-backdrop"></div>
+            <div class="hero-overlay"></div>
+        </section>
+
+        <!-- Dynamic Content Area -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2 id="section-title">Currently Airing</h2>
+            </div>
+            
+            <!-- Loading Spinner -->
+            <div id="loading-spinner" class="spinner-container">
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Grid Container -->
+            <div class="anime-grid" id="anime-grid">
+                <!-- Anime cards will be injected here via JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Player Modal / Detail View -->
+    <div class="modal" id="player-modal">
+        <div class="modal-content glass-panel">
+            <button class="close-btn" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="player-container">
+                <!-- Mock Video Player -->
+                <div class="video-wrapper">
+                    <video id="mock-video" controls poster="">
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="player-overlay" id="player-loading">
+                        <div class="spinner"></div>
+                        <p>Loading Stream...</p>
+                    </div>
+                </div>
+
+                <!-- Player Controls & Info -->
+                <div class="player-details">
+                    <div class="details-header">
+                        <h2 id="modal-title">Anime Title</h2>
+                        <div class="actions">
+                            <button class="btn btn-icon" id="modal-bookmark-btn">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="meta-info" id="modal-meta">
+                        <!-- Score, Year, Type injected via JS -->
+                    </div>
+
+                    <div class="audio-options">
+                        <span>Audio:</span>
+                        <div class="toggle-group">
+                            <button class="toggle-btn active" data-audio="sub">Sub</button>
+                            <button class="toggle-btn" data-audio="dub">Dub</button>
+                        </div>
+                    </div>
+
+                    <div class="episodes-section">
+                        <h3>Episodes</h3>
+                        <div class="episodes-grid" id="episodes-list">
+                            <!-- Episode buttons injected via JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="synopsis-section">
+                        <h3>Synopsis</h3>
+                        <p id="modal-synopsis"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
