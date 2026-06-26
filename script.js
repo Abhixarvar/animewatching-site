@@ -169,11 +169,19 @@ function renderAnimeGrid(animeArray) {
         const title = anime.title_english || anime.title;
         const type = anime.type || 'TV';
         const year = anime.year || (anime.aired && anime.aired.prop.from.year) || 'N/A';
+        
+        let statusBlip = '';
+        const bookmark = bookmarks.find(b => b.mal_id === anime.mal_id);
+        if (bookmark && bookmark.watch_status) {
+            const statusClass = 'status-' + bookmark.watch_status.replace(/_/g, '').replace(/ /g, '').toLowerCase();
+            statusBlip = `<div class="status-blip ${statusClass}" title="${bookmark.watch_status}"></div>`;
+        }
 
         card.innerHTML = `
             <div class="card-image">
                 <img src="${anime.images.webp.large_image_url}" alt="${title}" loading="lazy">
                 ${score}
+                ${statusBlip}
                 <div class="card-overlay">
                     <i class="fa-solid fa-circle-play play-icon"></i>
                 </div>

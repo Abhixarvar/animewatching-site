@@ -172,12 +172,34 @@
                 
                 <h1 class="anime-title" id="anime-title">Loading...</h1>
                 
+                <select id="status-select" class="status-select">
+                    <option value="">Not Bookmarked</option>
+                    <option value="watching">Watching</option>
+                    <option value="plan_to_watch">Plan to Watch</option>
+                    <option value="completed">Completed</option>
+                    <option value="on_hold">On Hold</option>
+                </select>
+                
                 <div class="anime-meta" id="anime-meta">
                     <!-- Meta info injected here -->
                 </div>
                 
                 <div class="anime-synopsis" id="anime-synopsis">
                     <!-- Synopsis injected here -->
+                </div>
+                
+                <div class="relations-section" id="relations-section" style="display: none;">
+                    <h3>Related Seasons</h3>
+                    <div class="relations-list" id="relations-list">
+                        <!-- Relation links injected here -->
+                    </div>
+                </div>
+
+                <div class="episodes-section" id="episodes-section" style="display: none; margin-bottom: 25px;">
+                    <h3 style="margin-bottom: 10px; font-family: 'Outfit', sans-serif; font-size: 1.2rem;">Episodes</h3>
+                    <div class="episodes-grid" id="episodes-list">
+                        <!-- Episode buttons injected here -->
+                    </div>
                 </div>
                 
                 <div class="watch-links">
@@ -190,6 +212,22 @@
             </div>
         </div>
     </main>
+
+    <!-- Platform Choice Modal -->
+    <div class="platform-modal" id="platform-modal">
+        <div class="platform-modal-content">
+            <h3 id="platform-modal-title">Where to watch?</h3>
+            <div class="platform-options">
+                <a href="#" id="crunchyroll-btn" class="platform-btn crunchyroll" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-play"></i> Watch on Crunchyroll
+                </a>
+                <a href="#" id="youtube-btn" class="platform-btn youtube" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-youtube"></i> Search on YouTube
+                </a>
+            </div>
+            <button class="close-platform-btn" id="close-platform-btn">Cancel</button>
+        </div>
+    </div>
 
     <script src="watch.js"></script>
 </body>
