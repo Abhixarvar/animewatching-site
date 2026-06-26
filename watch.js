@@ -56,8 +56,8 @@ function renderAnimeDetails(anime) {
     
     document.getElementById('anime-synopsis').textContent = anime.synopsis || "No synopsis available.";
     
-    // Set up AnimeDao search link
+    // Set up Crunchyroll search link
     const searchTitle = encodeURIComponent(title);
-    const animedaoUrl = `https://animedao.watch/search/?search=${searchTitle}`;
-    document.getElementById('animedao-link').href = animedaoUrl;
+    const externalUrl = `https://www.crunchyroll.com/search?q=${searchTitle}`;
+    document.getElementById('watch-external-link').href = externalUrl;
 }
