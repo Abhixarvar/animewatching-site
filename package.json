@@ -1,0 +1,27 @@
+{
+  "name": "animewatchsite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abhixarvar/animewatching-site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Abhixarvar/animewatching-site/issues"
+  },
+  "homepage": "https://github.com/Abhixarvar/animewatching-site#readme",
+  "dependencies": {
+    "@vercel/postgres": "^0.10.0",
+    "cookie": "^2.0.0",
+    "google-auth-library": "^10.9.0",
+    "jsonwebtoken": "^9.0.3"
+  }
+}

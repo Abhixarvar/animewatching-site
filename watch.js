@@ -60,6 +60,10 @@ function setupEventListeners(animeId) {
             }
         }
         localStorage.setItem('animepulse_bookmarks', JSON.stringify(bookmarks));
+        
+        if (window.saveBookmarkToDatabase) {
+            window.saveBookmarkToDatabase(animeId, newStatus);
+        }
     });
 
     closePlatformBtn.addEventListener('click', () => {

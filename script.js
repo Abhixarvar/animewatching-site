@@ -211,6 +211,7 @@ function isBookmarked(id) {
 
 function toggleBookmark(anime) {
     const index = bookmarks.findIndex(b => b.mal_id === anime.mal_id);
+    let statusToSave = '';
     
     if (index > -1) {
         bookmarks.splice(index, 1);
@@ -227,13 +228,19 @@ function toggleBookmark(anime) {
             year: anime.year,
             episodes: anime.episodes,
             status: anime.status,
-            synopsis: anime.synopsis
+            synopsis: anime.synopsis,
+            watch_status: 'plan_to_watch'
         };
         bookmarks.push(minimalAnime);
+        statusToSave = 'plan_to_watch';
         showToast('Added to bookmarks');
     }
     
     localStorage.setItem('animepulse_bookmarks', JSON.stringify(bookmarks));
+    
+    if (window.saveBookmarkToDatabase) {
+        window.saveBookmarkToDatabase(anime.mal_id, statusToSave);
+    }
     
     // If we are currently on the bookmarks tab, refresh it
     if (currentActiveTab === 'bookmarks') {

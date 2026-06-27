@@ -34,6 +34,7 @@
             <ul class="nav-links">
                 <li class="active" data-tab="home"><i class="fa-solid fa-house"></i> Home</li>
                 <li data-tab="bookmarks"><i class="fa-solid fa-bookmark"></i> Bookmarks</li>
+                <li id="auth-container" style="margin-left: 10px;"></li>
             </ul>
         </div>
     </nav>
@@ -82,6 +83,8 @@
     <!-- Toast Notification -->
     <div id="toast-container"></div>
 
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="auth.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
